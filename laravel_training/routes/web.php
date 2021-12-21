@@ -26,3 +26,4 @@ Route::prefix('tasks')->name('tasks.')->group(function () {
     Route::put('/{task}', [TaskController::class, 'update'])->name('update');
     Route::delete('/{task}', [TaskController::class, 'destroy'])->name('destroy');
 });
+
