@@ -42,17 +42,17 @@
     </thead>
     <tbody>
         <tr role="row">
-            <td>{{$value['title']}}</td>
-            <td>{{$value['Description']}}</td>
-            <td>{{$value['type']}}</td>
-            <td>{{$value['status']}}</td>
-            <td>{{$value['start_date']}}</td>
-            <td>{{$value['due_date']}}</td>
-            <td>{{$value['assignee']}}</td>
-            <td>{{$value['estimate']}}</td>
-            <td>{{$value['actual']}}</td>
-            <td><a href="{{url('/tasks/'.$key.'/edit')}}"><button class="btn btn-default" id="button">Edit</button></a>
-                <form action="{{url('/tasks/'.$key)}}" method="post">
+            <td>{{$value->title}}</td>
+            <td>{{$value->description}}</td>
+            <td>{{$value->type}}</td>
+            <td>{{$value->status}}</td>
+            <td>{{$value->start_date}}</td>
+            <td>{{$value->due_date}}</td>
+            <td>{{$value->assignee}}</td>
+            <td>{{$value->estimate}}</td>
+            <td>{{$value->actual}}</td>
+            <td><a href="{{url('/tasks/'.$id.'/edit')}}"><button class="btn btn-default" id="button">Edit</button></a>
+                <form action="{{url('/tasks/'.$id)}}" method="post">
                     {{ csrf_field() }}
                     @method('delete')
                     <button type="submit" class="btn btn-default" id="button">Delete</button>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
+use Illuminate\Support\Facades\DB;
 
 
 class TaskController extends Controller
@@ -14,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $value = $this->data();
+        $value = DB::table('task')->get();
         return view('admin/task/index', ['value' => $value]);
     }
 
@@ -36,6 +37,23 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
+        $start_date = date('Y-m-d'); //Fomat Date 
+        $start_date = $request->start_date;
+        $due_date = date('Y-m-d'); //Fomat Date 
+        $due_date = $request->due_date;
+        DB::table('task')->insert(
+            [
+                'title' => $request->title,
+                'description' =>  $request->description,
+                'type' =>  $request->type,
+                'status' =>  $request->type,
+                'start_date' =>  $start_date,
+                'due_date' =>  $due_date,
+                'assignee' =>  $request->assignee,
+                'estimate' =>  $request->estimate,
+                'actual' =>  $request->actual,
+            ]
+        );
         return redirect()->back()->with('message', 'Create susscess!');
     }
 
@@ -45,15 +63,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($key)
+    public function show($id)
     {
-        $value = $this->data();
-        foreach ($value as $k => $v) {
-            if ($k == $key) {
-                $value = $v;
-            }
-        }
-        return view('admin/task/details', ['value' => $value], ['key' => $key]);
+        $value = DB::table('task')->find($id);
+        return view('admin/task/details', ['value' => $value], ['id' => $id]);
     }
 
     /**
@@ -62,15 +75,10 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($key)
+    public function edit($id)
     {
-        $value = $this->data();
-        foreach ($value as $k => $v) {
-            if ($k == $key) {
-                $value = $v;
-            }
-        }
-        return view('admin/task/edit', ['value' => $value], ['key' => $key]);
+        $value = DB::table('task')->find($id);
+        return view('admin/task/edit', ['value' => $value], ['id' => $id]);
     }
 
     /**
@@ -82,6 +90,23 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, $id)
     {
+        $start_date = date('Y-m-d'); //Fomat Date 
+        $start_date = $request->start_date;
+        $due_date = date('Y-m-d'); //Fomat Date 
+        $due_date = $request->due_date;
+        DB::table('task')->where('id', $id)->update(
+            [
+                'title' => $request->title,
+                'description' =>  $request->description,
+                'type' =>  $request->type,
+                'status' =>  $request->type,
+                'start_date' =>  $start_date,
+                'due_date' =>  $due_date,
+                'assignee' =>  $request->assignee,
+                'estimate' =>  $request->estimate,
+                'actual' =>  $request->actual,
+            ]
+        );
         return redirect()->back()->with('message', 'Update susscess!');
     }
 
@@ -93,33 +118,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
+        DB::table('task')->where('id', $id)->delete();
         return redirect()->back()->with('message', 'Delete susscess!');
-    }
-    public function data()
-    {
-        return [
-            'task1' => [
-                'title' => 'This is task 1',
-                'Description' => 'This is description',
-                'type' => 'This is type',
-                'status' => '0',
-                'start_date' => '15/12/2021',
-                'due_date' => '30/12/2021',
-                'assignee' => 'Ngoc Vien',
-                'estimate' => '15 days',
-                'actual' => '10 days'
-            ],
-            'task2' => [
-                'title' => 'This is task 2',
-                'Description' => 'This is description',
-                'type' => 'This is type',
-                'status' => '1',
-                'start_date' => '30/12/2021',
-                'due_date' => '15/1/2022',
-                'assignee' => 'Ngoc Vien',
-                'estimate' => '15 days',
-                'actual' => '10 days'
-            ]
-        ];
     }
 }
