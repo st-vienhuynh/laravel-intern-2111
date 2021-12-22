@@ -17,10 +17,10 @@ class CreateTasksTable extends Migration
     {
         Schema::create('task', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
-            $table->integer('type')->nullable();
-            $table->integer('status')->nullable();
+            $table->text('title')->nullable();
+            $table->text('description')->nullable();
+            $table->unsignedTinyInteger('type')->nullable();
+            $table->unsignedTinyInteger('status')->nullable();
             $table->date('start_date')->nullable();
             $table->date('due_date')->nullable();
             $table->unsignedBigInteger('assignee');

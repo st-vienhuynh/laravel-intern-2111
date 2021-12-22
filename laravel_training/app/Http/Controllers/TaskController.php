@@ -15,8 +15,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $value = DB::table('task')->get();
-        return view('admin/task/index', ['value' => $value]);
+        $task = DB::table('task')->get();
+        return view('admin.task.index', ['task' => $task]);
     }
 
     /**
@@ -26,7 +26,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('admin/task/create');
+        return view('admin.task.create');
     }
 
     /**
@@ -37,18 +37,14 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        $start_date = date('Y-m-d'); //Fomat Date 
-        $start_date = $request->start_date;
-        $due_date = date('Y-m-d'); //Fomat Date 
-        $due_date = $request->due_date;
         DB::table('task')->insert(
             [
                 'title' => $request->title,
                 'description' =>  $request->description,
                 'type' =>  $request->type,
                 'status' =>  $request->type,
-                'start_date' =>  $start_date,
-                'due_date' =>  $due_date,
+                'start_date' =>  $request->start_date,
+                'due_date' =>  $request->due_date,
                 'assignee' =>  $request->assignee,
                 'estimate' =>  $request->estimate,
                 'actual' =>  $request->actual,
@@ -65,8 +61,8 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $value = DB::table('task')->find($id);
-        return view('admin/task/details', ['value' => $value], ['id' => $id]);
+        $task = DB::table('task')->find($id);
+        return view('admin.task.details', ['task' => $task]);
     }
 
     /**
@@ -77,8 +73,8 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $value = DB::table('task')->find($id);
-        return view('admin/task/edit', ['value' => $value], ['id' => $id]);
+        $task = DB::table('task')->find($id);
+        return view('admin.task.edit', ['task' => $task]);
     }
 
     /**
@@ -90,18 +86,14 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, $id)
     {
-        $start_date = date('Y-m-d'); //Fomat Date 
-        $start_date = $request->start_date;
-        $due_date = date('Y-m-d'); //Fomat Date 
-        $due_date = $request->due_date;
         DB::table('task')->where('id', $id)->update(
             [
                 'title' => $request->title,
                 'description' =>  $request->description,
                 'type' =>  $request->type,
-                'status' =>  $request->type,
-                'start_date' =>  $start_date,
-                'due_date' =>  $due_date,
+                'status' =>  $request->status,
+                'start_date' =>  $request->start_date,
+                'due_date' =>  $request->due_date,
                 'assignee' =>  $request->assignee,
                 'estimate' =>  $request->estimate,
                 'actual' =>  $request->actual,

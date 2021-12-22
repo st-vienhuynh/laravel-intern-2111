@@ -42,17 +42,17 @@
     </thead>
     <tbody>
         <tr role="row">
-            <td>{{$value->title}}</td>
-            <td>{{$value->description}}</td>
-            <td>{{$value->type}}</td>
-            <td>{{$value->status}}</td>
-            <td>{{$value->start_date}}</td>
-            <td>{{$value->due_date}}</td>
-            <td>{{$value->assignee}}</td>
-            <td>{{$value->estimate}}</td>
-            <td>{{$value->actual}}</td>
-            <td><a href="{{url('/tasks/'.$id.'/edit')}}"><button class="btn btn-default" id="button">Edit</button></a>
-                <form action="{{url('/tasks/'.$id)}}" method="post">
+            <td>{{$task->title}}</td>
+            <td>{{$task->description}}</td>
+            <td>{{$task->type}}</td>
+            <td>{{$task->status}}</td>
+            <td>{{$task->start_date}}</td>
+            <td>{{$task->due_date}}</td>
+            <td>{{$task->assignee}}</td>
+            <td>{{$task->estimate}}</td>
+            <td>{{$task->actual}}</td>
+            <td><a href="{{route('tasks.edit',['id'=>$task->id])}}"><button class="btn btn-default" id="button">Edit</button></a>
+                <form action="{{route('tasks.destroy',['id'=>$task->id])}}" method="post">
                     {{ csrf_field() }}
                     @method('delete')
                     <button type="submit" class="btn btn-default" id="button">Delete</button>
