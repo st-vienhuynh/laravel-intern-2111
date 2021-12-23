@@ -41,20 +41,20 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($task as $key => $task)
+        @foreach($tasks as $key => $tasks)
         <tr role="row">
-            <td>{{$task->title}}</td>
-            <td>{{$task->description}}</td>
-            <td>{{$task->type}}</td>
-            <td>{{$task->status}}</td>
-            <td>{{$task->start_date}}</td>
-            <td>{{$task->due_date}}</td>
-            <td>{{$task->assignee}}</td>
-            <td>{{$task->estimate}}</td>
-            <td>{{$task->actual}}</td>
-            <td><a href="{{route('tasks.show',['id'=>$task->id])}}"><button class="btn btn-default" id="button">Details</button></a>
-            <td><a href="{{route('tasks.edit',['id'=>$task->id])}}"><button class="btn btn-default" id="button">Edit</button></a>
-                <form action="{{route('tasks.destroy',['id'=>$task->id])}}" method="post">
+            <td>{{$tasks->title}}</td>
+            <td>{{$tasks->description}}</td>
+            <td>{{$tasks->type}}</td>
+            <td>{{$tasks->status}}</td>
+            <td>{{$tasks->start_date}}</td>
+            <td>{{$tasks->due_date}}</td>
+            <td>{{$tasks->assignee}}</td>
+            <td>{{$tasks->estimate}}</td>
+            <td>{{$tasks->actual}}</td>
+            <td><a href="{{route('tasks.show',['id'=>$tasks->id])}}"><button class="btn btn-default" id="button">Details</button></a>
+            <td><a href="{{route('tasks.edit',['id'=>$tasks->id])}}"><button class="btn btn-default" id="button">Edit</button></a>
+                <form action="{{route('tasks.destroy',['id'=>$tasks->id])}}" method="post">
                     {{ csrf_field() }}
                     @method('delete')
                     <button type="submit" class="btn btn-default" id="button">Delete</button>

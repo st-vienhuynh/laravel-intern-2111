@@ -29,8 +29,8 @@ class TaskSeeder extends Seeder
                 DB::table('task')->insert([
                     'title' => $faker->text(50),
                     'description' => $faker->text(100),
-                    'type' => rand(1, 10),
-                    'status' => rand(0, 1),
+                    'type' => rand(1, 3),
+                    'status' => rand(1, 6),
                     'start_date' => Carbon::today()->addDay(rand(-20, -1)),
                     'due_date' => Carbon::today()->addDay(rand(1, 20)),
                     'assignee' => $userid,
