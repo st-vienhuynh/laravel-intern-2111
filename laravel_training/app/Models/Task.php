@@ -93,15 +93,4 @@ class Task extends Model
             }
         }
     }
-
-    /**
-     * Scope a query to get all tasks.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeGetOneTask($query, $id)
-    {
-        return $query->find($id);
-    }
 }

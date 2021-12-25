@@ -5,10 +5,21 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Task;
+use App\Interfaces\TaskRepositoryInterface;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 
 class TaskController extends Controller
 {
+    private TaskRepositoryInterface $taskRepository;
+
+    public function __construct(TaskRepositoryInterface $taskRepository)
+    {
+        $this->taskRepository = $taskRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +27,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = $this->taskRepository->getAllTasks();
         return view('admin.task.index', ['tasks' => $tasks]);
     }
 
@@ -38,7 +49,7 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        Task::Create($request->validated());
+        $this->taskRepository->createTask($request->validated());
         return redirect()->back()->with('message', 'Create susscess!');
     }
 
@@ -50,7 +61,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::getOneTask($id);
+        $task = $this->taskRepository->getTaskById($id);
         return view('admin.task.details', ['task' => $task]);
     }
 
@@ -62,7 +73,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::getOneTask($id);
+        $task = $this->taskRepository->getTaskById($id);
         return view('admin.task.edit', ['task' => $task]);
     }
 
@@ -75,7 +86,7 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, $id)
     {
-        Task::getOneTask($id)->Update($request->validated());
+        $this->taskRepository->updateTask($id, $request->validated());
         return redirect()->back()->with('message', 'Update susscess!');
     }
 
@@ -87,7 +98,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        Task::getOneTask($id)->delete();
+        $this->taskRepository->deleteTask($id);
         return redirect()->back()->with('message', 'Delete susscess!');
     }
 }
