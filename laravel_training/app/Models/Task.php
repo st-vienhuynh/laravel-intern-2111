@@ -100,52 +100,8 @@ class Task extends Model
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeGetAll($query)
+    public function scopeGetOneTask($query, $id)
     {
-        return $query->get();
-    }
-
-    /**
-     * Scope a query to get one task.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeGetOne($query, $id)
-    {
-        return $query->findOrFail($id);
-    }
-
-    /**
-     * Scope a query to create task.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeCreateTask($query, $task)
-    {
-        return $query->create($task);
-    }
-
-    /**
-     * Scope a query to update task.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeUpdateTask($query, $id, $task)
-    {
-        return $query->findOrFail($id)->update($task);
-    }
-
-    /**
-     * Scope a query to delete task.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeDeleteTask($query, $id)
-    {
-        return $query->find($id)->delete();
+        return $query->find($id);
     }
 }

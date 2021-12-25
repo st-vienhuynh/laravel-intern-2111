@@ -16,7 +16,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::GetAll();
+        $tasks = Task::all();
         return view('admin.task.index', ['tasks' => $tasks]);
     }
 
@@ -38,7 +38,7 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request)
     {
-        Task::CreateTask($request->all());
+        Task::Create($request->validated());
         return redirect()->back()->with('message', 'Create susscess!');
     }
 
@@ -50,7 +50,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        $task = Task::GetOne($id);
+        $task = Task::getOneTask($id);
         return view('admin.task.details', ['task' => $task]);
     }
 
@@ -62,7 +62,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::GetOne($id);
+        $task = Task::getOneTask($id);
         return view('admin.task.edit', ['task' => $task]);
     }
 
@@ -75,8 +75,7 @@ class TaskController extends Controller
      */
     public function update(TaskRequest $request, $id)
     {
-        $task = $request->all();
-        Task::UpdateTask($id, $task);
+        Task::getOneTask($id)->Update($request->validated());
         return redirect()->back()->with('message', 'Update susscess!');
     }
 
@@ -88,7 +87,7 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        Task::DeleteTask($id);
+        Task::getOneTask($id)->delete();
         return redirect()->back()->with('message', 'Delete susscess!');
     }
 }
