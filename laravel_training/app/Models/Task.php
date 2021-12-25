@@ -16,7 +16,7 @@ class Task extends Model
         'title', 'description', 'type', 'status', 'start_date', 'due_date', 'assignee', 'estimate', 'actual'
     ];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      *Convert number to string in column status.
