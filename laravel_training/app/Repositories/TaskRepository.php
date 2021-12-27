@@ -29,11 +29,7 @@ class TaskRepository implements TaskRepositoryInterface
 
     public function updateTask($taskId, array $taskUpdate)
     {
-        return Task::find($taskId)->update($taskUpdate);
-    }
-
-    public function getFulfilledTasks()
-    {
-        return Task::where('is_fulfilled', true);
+        $task = Task::find($taskId);
+        return $task->update($taskUpdate);
     }
 }

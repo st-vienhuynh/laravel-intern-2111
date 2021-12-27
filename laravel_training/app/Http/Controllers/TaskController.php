@@ -6,9 +6,6 @@ use App\Http\Requests\TaskRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Task;
 use App\Interfaces\TaskRepositoryInterface;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 
 class TaskController extends Controller
