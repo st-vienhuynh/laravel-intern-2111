@@ -19,7 +19,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function deleteUser($userId)
     {
-        User::destroy($userId);
+        return User::destroy($userId);
     }
 
     public function createUser(array $usercreate)

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
-use Illuminate\Support\Facades\DB;
-use App\Models\Task;
 use App\Interfaces\TaskRepositoryInterface;
 
 
 class TaskController extends Controller
 {
-    private TaskRepositoryInterface $taskRepository;
+    private $taskRepository;
 
     public function __construct(TaskRepositoryInterface $taskRepository)
     {
