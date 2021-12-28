@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +26,9 @@ Route::prefix('tasks')->name('tasks.')->group(function () {
     Route::get('/{id}/edit', [TaskController::class, 'edit'])->name('edit');
     Route::put('/{id}', [TaskController::class, 'update'])->name('update');
     Route::delete('/{id}', [TaskController::class, 'destroy'])->name('destroy');
+});
+
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('', [UserController::class, 'index'])->name('index');
+    Route::get('/{id}', [UserController::class, 'show'])->name('show');
 });

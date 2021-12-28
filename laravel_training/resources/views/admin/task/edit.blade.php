@@ -38,13 +38,13 @@
                                     @error('type')
                                     <span>{{$message}}</span>
                                     @enderror
-                                    <input type="type" name="type" class="form-control form-control-user" value="{{$task->type}}">
+                                    <input type="type" name="type" class="form-control form-control-user" value="{{$task->type_label}}">
                                 </div>
                                 <div class="form-group">
                                     @error('status')
                                     <span>{{$message}}</span>
                                     @enderror
-                                    <input type="status" name="status" class="form-control form-control-user" value="{{$task->status}}">
+                                    <input type="status" name="status" class="form-control form-control-user" value="{{$task->status_label}}">
                                 </div>
                                 <div class="form-group">
                                     @error('start_date')

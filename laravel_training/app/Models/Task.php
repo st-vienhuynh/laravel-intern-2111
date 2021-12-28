@@ -24,7 +24,7 @@ class Task extends Model
      * @param  string  $value
      * @return string
      */
-    public function getStatusAttribute($value)
+    public function getStatusLabelAttribute()
     {
         return [
             '1' => 'open',
@@ -33,7 +33,7 @@ class Task extends Model
             '4' => 'Pending',
             '5' => 'Verified',
             '6' => 'Closed',
-        ][$value];
+        ][$this->status];
     }
 
     /**
@@ -42,13 +42,13 @@ class Task extends Model
      * @param  string  $value
      * @return string
      */
-    public function getTypeAttribute($value)
+    public function getTypeLabelAttribute($value)
     {
         return [
             '1' => 'Story',
             '2' => 'Task',
             '3' => 'Bug'
-        ][$value];
+        ][$this->type];
     }
 
     /**
