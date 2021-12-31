@@ -45,8 +45,8 @@
         <tr role="row">
             <td>{{$task->title}}</td>
             <td>{{$task->description}}</td>
-            <td>{{$task->type}}</td>
-            <td>{{$task->status}}</td>
+            <td>{{$task->type_label}}</td>
+            <td>{{$task->status_label}}</td>
             <td>{{$task->start_date}}</td>
             <td>{{$task->due_date}}</td>
             <td>{{$task->assignee}}</td>
