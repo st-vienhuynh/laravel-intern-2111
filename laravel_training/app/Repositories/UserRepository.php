@@ -31,9 +31,4 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::find($userId)->update($userUpdate);
     }
-
-    public function getFulfilledUsers()
-    {
-        return User::where('is_fulfilled', true);
-    }
 }
