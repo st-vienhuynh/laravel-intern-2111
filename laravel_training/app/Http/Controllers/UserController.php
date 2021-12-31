@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserResource;
-use App\Http\Resources\TaskResource;
 use Illuminate\Http\Request;
 use App\Interfaces\UserRepositoryInterface;
 
@@ -23,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = UserResource::collection($this->userRepository->getAllUsers());
+        $users = $this->userRepository->getAllUsers();
         return view('admin.user.index', ['users' => $users]);
     }
 
@@ -56,9 +54,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = new UserResource($this->userRepository->getUserById($id));
-        $tasks = TaskResource::collection($user->tasks);
-        return view('admin.user.details', ['tasks' => $tasks, 'user' => $user]);
+        $user = $this->userRepository->getUserById($id);
+        return view('admin.user.details', ['user' => $user]);
     }
 
     /**

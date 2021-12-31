@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,13 +17,11 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
     }
 
-    public function getTaskByUser($id)
+    public function getTasksByUserId($id)
     {
         $user = new UserResource($this->userRepository->getUserById($id));
-        $tasks = TaskResource::collection($user->tasks);
         return [
-            'user' => $user,
-            'list tasks' => $tasks
+            'user' => $user
         ];
     }
 }

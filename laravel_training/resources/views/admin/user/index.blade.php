@@ -22,7 +22,7 @@
             <td>{{$user->name}}</td>
             <td>{{$user->email}}</td>
             <td>
-                <a href="{{route('users.show',['id'=>$user->id])}}"><button class="btn btn-default" id="button">Details</button></a>
+                <a href="{{route('users.show', ['id'=>$user->id])}}"><button class="btn btn-default" id="button">Details</button></a>
             </td>
         </tr>
         @endforeach

@@ -19,7 +19,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($tasks as $key => $task)
+        @foreach($user->tasks as $key => $task)
         <tr role="row">
             <td>{{$task->title}}</td>
             <td>{{$task->description}}</td>
